@@ -5,7 +5,7 @@
 
     <groupId>net.thiki.ec.component</groupId>
     <artifactId>parent</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -115,4 +115,11 @@
             </plugin>
         </plugins>
     </build>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub OWNER Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/thiki-ec-aa/ec-components</url>
+        </repository>
+    </distributionManagement>
 </project>
