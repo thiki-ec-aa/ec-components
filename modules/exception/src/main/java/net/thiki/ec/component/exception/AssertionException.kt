@@ -18,6 +18,8 @@ open class AssertionException(
     val bizParams: MutableMap<String, String> = mutableMapOf()
 ) : RuntimeException(cause) {
 
+    constructor(message: String): this(CodeUnknown, message)
+
     constructor(
         /** internal code */
         code: Int = 0,
@@ -49,6 +51,7 @@ open class AssertionException(
 
     companion object {
         const val SystemParams_Key_HttpStatus = "http-status"
+        const val CodeUnknown: Int = -999
     }
 
 }
