@@ -11,11 +11,14 @@ import java.util.*
 class TimeDuration( val begin: Instant, val end: Instant )
 
 class TimeUtils(
-    var DefaultZoneId: ZoneId = ZoneId.of("Asia/Shanghai")
+    private val zoneId: ZoneId = DefaultZoneId
 ) {
 
-    private val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(DefaultZoneId)
-    private val df = DateTimeFormatter.ofPattern("yyyy-MM-dd").withZone(DefaultZoneId)
+    private val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(zoneId)
+    private val df = DateTimeFormatter.ofPattern("yyyy-MM-dd").withZone(zoneId)
+    companion object{
+        val DefaultZoneId: ZoneId = ZoneId.of("Asia/Shanghai")
+    }
 
     fun epochMilliToString(milli: Long): String {
         return Instant.ofEpochMilli(milli).toString()
@@ -55,18 +58,18 @@ class TimeUtils(
     fun parse(dateTimeStr: String): Instant {
         assert(dateTimeStr.isNotEmpty())
         return LocalDateTime.parse(dateTimeStr, dtf)
-            .atZone(DefaultZoneId)
+            .atZone(zoneId)
             .toInstant()
     }
 
     fun parseDate(dateTimeStr: String): Instant {
         return LocalDateTime.parse(dateTimeStr, dtf)
-            .atZone(DefaultZoneId)
+            .atZone(zoneId)
             .toInstant()
     }
 
     fun format(instant: Instant): String {
-        val dateTime = instant.atZone(DefaultZoneId)
+        val dateTime = instant.atZone(zoneId)
         return dateTime.format(dtf)
     }
 
@@ -84,7 +87,7 @@ class TimeUtils(
      * @return epochSeconds with date for dateStr
      */
     fun shiftTimeToDate(epochSeconds: Long, dateStr: String): Long {
-        return shiftTimeToDate(epochSeconds, dateStr, DefaultZoneId)
+        return shiftTimeToDate(epochSeconds, dateStr, zoneId)
     }
 
     /**
@@ -116,15 +119,15 @@ class TimeUtils(
      * @return
      */
     fun split(begin: Instant, end: Instant, unit: ChronoUnit): List<TimeDuration> {
-        val ldtEnd = end.atZone(DefaultZoneId).toLocalDateTime()
+        val ldtEnd = end.atZone(zoneId).toLocalDateTime()
         var zBegin = trimEnd(begin, unit)
         var zEnd = zBegin.plus(1, unit)
         val list: MutableList<TimeDuration> = ArrayList<TimeDuration>()
 
         // <=
         while (!zEnd.isAfter(ldtEnd)) {
-            val iBegin = zBegin.atZone(DefaultZoneId).toInstant()
-            val iEnd = zEnd.atZone(DefaultZoneId).toInstant()
+            val iBegin = zBegin.atZone(zoneId).toInstant()
+            val iEnd = zEnd.atZone(zoneId).toInstant()
             list.add(
                 TimeDuration(
                     iBegin,
@@ -145,8 +148,8 @@ class TimeUtils(
      */
     private fun trimEnd(instant: Instant, fromUnit: ChronoUnit): LocalDateTime {
         val ldt: LocalDateTime = when (fromUnit) {
-            ChronoUnit.DAYS -> instant.atZone(DefaultZoneId).toLocalDate().atTime(0, 0, 0, 0)
-            ChronoUnit.HOURS -> instant.atZone(DefaultZoneId).toLocalDateTime()
+            ChronoUnit.DAYS -> instant.atZone(zoneId).toLocalDate().atTime(0, 0, 0, 0)
+            ChronoUnit.HOURS -> instant.atZone(zoneId).toLocalDateTime()
                 .with(ChronoField.MINUTE_OF_HOUR, 0)
                 .with(ChronoField.SECOND_OF_MINUTE, 0)
                 .with(ChronoField.NANO_OF_SECOND, 0)
