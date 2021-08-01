@@ -12,7 +12,7 @@ import java.util.*
 class TimeDuration( val begin: Instant, val end: Instant )
 
 class TimeUtils(
-    private val zoneId: ZoneId = DefaultZoneId
+    val zoneId: ZoneId = DefaultZoneId
 ) {
 
     private val dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(zoneId)
