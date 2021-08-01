@@ -25,6 +25,10 @@ class TimeUtils(
         return Instant.ofEpochMilli(milli).toString()
     }
 
+    fun ofPattern(p: String): DateTimeFormatter{
+        return DateTimeFormatter.ofPattern(p).withZone(zoneId)
+    }
+
     /**
      * 给time加上delta的时间，以unit为单位，返回结果时间
      * @param time
@@ -81,7 +85,6 @@ class TimeUtils(
     fun format(epochSeconds: Long): String {
         return format(Instant.ofEpochSecond(epochSeconds))
     }
-
 
     /**
      * 将 epochSeconds 代表的时间戳的日期改为dateStr所代表的北京时间的日期，返回时间戳（秒）
