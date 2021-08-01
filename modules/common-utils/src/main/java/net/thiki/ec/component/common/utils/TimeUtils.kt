@@ -1,6 +1,7 @@
 package net.thiki.ec.component.common.utils
 
 import net.thiki.ec.component.exception.AssertionException
+import net.thiki.ec.component.exception.unexpectedError
 import java.time.*
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoField
@@ -156,6 +157,17 @@ class TimeUtils(
             else -> throw AssertionException("not supported unit:$fromUnit")
         }
         return ldt
+    }
+
+    /**
+     * 获取instant所在当前整unit的起止时间
+     */
+    fun calTimeDuration(instant: Instant, unit: ChronoUnit): TimeDuration {
+        val ldt = trimEnd(instant, unit)
+        return TimeDuration(
+            ldt.atZone(zoneId).toInstant(),
+            ldt.plus(1, unit).atZone(zoneId).toInstant()
+        )
     }
 }
 
