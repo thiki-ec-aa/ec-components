@@ -69,6 +69,10 @@ class TimeUtils(
             .toInstant()
     }
 
+    fun formatDate(instant: Instant): String {
+        val dateTime = instant.atZone(zoneId)
+        return dateTime.format(df)
+    }
     fun format(instant: Instant): String {
         val dateTime = instant.atZone(zoneId)
         return dateTime.format(dtf)
