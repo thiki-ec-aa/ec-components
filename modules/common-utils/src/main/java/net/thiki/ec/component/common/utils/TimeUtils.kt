@@ -154,7 +154,7 @@ class TimeUtils(
      * @param fromUnit
      * @return
      */
-    private fun trimEnd(instant: Instant, fromUnit: ChronoUnit): LocalDateTime {
+    public fun trimEnd(instant: Instant, fromUnit: ChronoUnit): LocalDateTime {
         val ldt: LocalDateTime = when (fromUnit) {
             ChronoUnit.DAYS -> instant.atZone(zoneId).toLocalDate().atTime(0, 0, 0, 0)
             ChronoUnit.HOURS -> instant.atZone(zoneId).toLocalDateTime()
