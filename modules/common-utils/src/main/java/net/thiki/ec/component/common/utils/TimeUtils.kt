@@ -68,7 +68,7 @@ class TimeUtils(
     }
 
     fun parseDate(dateTimeStr: String): Instant {
-        return LocalDateTime.parse(dateTimeStr, dtf)
+        return LocalDateTime.parse(dateTimeStr, df)
             .atZone(zoneId)
             .toInstant()
     }
