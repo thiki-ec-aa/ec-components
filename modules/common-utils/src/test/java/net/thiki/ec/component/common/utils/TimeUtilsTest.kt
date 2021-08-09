@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import java.text.ParseException
+import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZonedDateTime
@@ -13,6 +14,28 @@ import kotlin.test.assertEquals
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 internal class TimeUtilsTest {
+
+    @Test
+    fun testParseDate(){
+        val cut = TimeUtils()
+        val dateTimeStr = "2021-08-07"
+        val time = cut.parseDate(dateTimeStr)
+        println(time.toEpochMilli())
+        println(cut.formatDate(time))
+        assertEquals("2021-08-07 00:00:00", cut.format(time))
+        assertEquals("2021-08-07", cut.formatDate(time))
+    }
+    @Test
+    fun testParse(){
+        val cut = TimeUtils()
+        val dateTimeStr = "2021-08-07 03:12:05"
+        val time = cut.parse(dateTimeStr)
+        println(time.toEpochMilli())
+        println(cut.formatDate(time))
+        assertEquals("2021-08-07 03:12:05", cut.format(time))
+        assertEquals("2021-08-07", cut.formatDate(time))
+    }
+
     @Test
     @Throws(ParseException::class)
     fun test_shiftTimeToDate() {

@@ -1,13 +1,13 @@
 package net.thiki.ec.component.common.utils
 
 import net.thiki.ec.component.exception.AssertionException
-import net.thiki.ec.component.exception.unexpectedError
 import java.time.*
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoField
 import java.time.temporal.ChronoUnit
 import java.time.temporal.TemporalUnit
 import java.util.*
+
 
 class TimeDuration( val begin: Instant, val end: Instant )
 
@@ -67,10 +67,10 @@ class TimeUtils(
             .toInstant()
     }
 
-    fun parseDate(dateTimeStr: String): Instant {
-        return LocalDateTime.parse(dateTimeStr, df)
-            .atZone(zoneId)
-            .toInstant()
+    fun parseDate(dateStr: String): Instant {
+        return parse("$dateStr 00:00:00");
+//        val date = LocalDate.parse(dateStr)
+//        return date.atStartOfDay(zoneId).toInstant()
     }
 
     fun formatDate(instant: Instant): String {
