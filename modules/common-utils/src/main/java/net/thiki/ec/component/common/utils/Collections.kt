@@ -137,6 +137,13 @@ object Collections {
         }
         return result
     }
+
+}
+object NullUtils{
+    @JvmStatic
+    fun <T> getValueOrDefault(value: T?, defaultValue: T): T {
+        return value ?: defaultValue
+    }
 }
 
 

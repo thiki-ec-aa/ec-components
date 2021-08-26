@@ -116,6 +116,14 @@
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub thiki-ec-aa Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/thiki-ec-aa/ec-components</url>
+        </repository>
+    </distributionManagement>
 </project>

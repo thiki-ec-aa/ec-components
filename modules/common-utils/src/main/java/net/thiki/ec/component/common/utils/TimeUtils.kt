@@ -161,13 +161,15 @@ class TimeUtils(
     public fun trimEnd(instant: Instant, fromUnit: ChronoUnit, interval: Int): LocalDateTime {
         val ldt: LocalDateTime = when (fromUnit) {
             ChronoUnit.DAYS -> instant.atZone(zoneId).toLocalDate().atTime(0, 0, 0, 0)
-            ChronoUnit.HOURS -> instant.atZone(zoneId).toLocalDateTime()
-                .with(ChronoField.MINUTE_OF_HOUR, 0)
-                .with(ChronoField.SECOND_OF_MINUTE, 0)
-                .with(ChronoField.NANO_OF_SECOND, 0)
+            ChronoUnit.HOURS -> {
+                instant.atZone(zoneId).toLocalDateTime()
+                    .with(ChronoField.MINUTE_OF_HOUR, 0)
+                    .with(ChronoField.SECOND_OF_MINUTE, 0)
+                    .with(ChronoField.NANO_OF_SECOND, 0)
+            }
             ChronoUnit.MINUTES -> {
                 val ldt = instant.atZone(zoneId).toLocalDateTime();
-                
+
                 ldt.with(ChronoField.SECOND_OF_MINUTE, ldt.minute.toLong() / interval * interval)
                     .with(ChronoField.NANO_OF_SECOND, 0)
 
