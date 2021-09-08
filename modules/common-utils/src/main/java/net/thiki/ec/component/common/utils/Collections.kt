@@ -141,7 +141,17 @@ object Collections {
     /**
      * for java
      */
-    fun <T> joinToString(col: Collection<T>,separator: CharSequence = ", ", prefix: CharSequence = "", postfix: CharSequence = "", limit: Int = -1, truncated: CharSequence = "...", transform: ((T) -> CharSequence)? = null): String {
+    @JvmStatic
+    @JvmOverloads
+    fun <T> joinToString(
+        col: Collection<T>,
+        separator: CharSequence = ", ",
+        prefix: CharSequence = "",
+        postfix: CharSequence = "",
+        limit: Int = -1,
+        truncated: CharSequence = "...",
+        transform: ((T) -> String)? = null
+    ): String {
         return col.joinToString(separator, prefix, postfix, limit, truncated, transform)
     }
 
