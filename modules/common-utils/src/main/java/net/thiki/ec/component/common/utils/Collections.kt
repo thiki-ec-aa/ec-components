@@ -138,6 +138,13 @@ object Collections {
         return result
     }
 
+    /**
+     * for java
+     */
+    fun <T> joinToString(col: Collection<T>,separator: CharSequence = ", ", prefix: CharSequence = "", postfix: CharSequence = "", limit: Int = -1, truncated: CharSequence = "...", transform: ((T) -> CharSequence)? = null): String {
+        return col.joinToString(separator, prefix, postfix, limit, truncated, transform)
+    }
+
 }
 object NullUtils{
     @JvmStatic
