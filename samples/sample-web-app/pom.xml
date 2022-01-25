@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>net.thiki.ec.component</groupId>
+        <artifactId>parent</artifactId>
+        <version>0.1.1-SNAPSHOT</version>
+        <relativePath>../..</relativePath>
+    </parent>
+
+    <artifactId>sample-web-app</artifactId>
+    <version>0.1.1-SNAPSHOT</version>
+
+    <properties>
+        <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
+        <spring-boot.version>2.3.3.RELEASE</spring-boot.version>
+        <lombok.version>1.18.20</lombok.version>
+
+        <main.class>net.thiki.ec.component.sample.SampleWebApp</main.class>
+    </properties>
+
+    <dependencyManagement>
+       <dependencies>
+           <!-- 定义 spring boot 版本，内涵所有boot的依赖的版本 -->
+           <dependency>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-dependencies</artifactId>
+               <version>${spring-boot.version}</version>
+               <type>pom</type>
+               <scope>import</scope>
+               <exclusions>
+                   <exclusion>
+                       <groupId>org.springframework.boot</groupId>
+                       <artifactId>spring-boot-starter-logging</artifactId>
+                   </exclusion>
+               </exclusions>
+           </dependency>
+           <!-- 在父类starter里exclude一次spring-boot-starter-logging即可 -->
+           <dependency>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-starter</artifactId>
+               <exclusions>
+                   <exclusion>
+                       <groupId>org.springframework.boot</groupId>
+                       <artifactId>spring-boot-starter-logging</artifactId>
+                   </exclusion>
+               </exclusions>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-starter-log4j2</artifactId>
+               <version>${spring-boot.version}</version>
+           </dependency>
+
+       </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>net.thiki.ec.component</groupId>
+            <artifactId>exception</artifactId>
+            <version>0.1.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- lombok provided scope is not transitive, so every pom should add it.-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring-boot.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- to avoid jackson lib conflict-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.11.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <configuration>
+                    <mainClass>${main.class></mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <goals>
+                    <goal>compile</goal>
+                </goals>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <compilerArgs>
+                        <arg>-verbose</arg>
+                    </compilerArgs>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>
