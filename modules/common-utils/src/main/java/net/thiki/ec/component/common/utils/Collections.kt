@@ -126,6 +126,17 @@ object Collections {
     }
 
     /**
+     * wrap the setOf for java code.
+     */
+    fun <T> setOf(vararg elements : T): Set<T>{
+        return HashSet<T>().also{s ->
+            elements.forEach { e ->
+               s.add(e);
+            }
+        }
+    }
+
+    /**
      * 分批次处理列表T，映射为V
      */
     fun <T, V> batchMap(batchSize: Int, list: List<T>, block: ((List<T>) -> List<V>)): MutableList<V> {
