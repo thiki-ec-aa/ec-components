@@ -31,12 +31,12 @@ open class AssertionException(
         get() {
             val fill1 = StringFormatter.format(field, systemParams)
             val fill2 = StringFormatter.format(field, bizParams)
-            return fill2 +
-                    if (showStackTrace) {
-                        "\n" + getThrowsLine()
-                    } else {
-                        ""
-                    }
+            if (showStackTrace){
+                return fill2 + "\n" + getThrowsLine()
+            }else{
+                return fill2
+            }
+
         }
 
     fun httpStatus(status: Int): AssertionException {

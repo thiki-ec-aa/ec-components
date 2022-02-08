@@ -12,14 +12,17 @@ object StringFormatter {
     internal val ESCAPE_CHAR = '\\'
 
 
-    fun format(messagePattern: String, arg: Any): String? {
-        return arrayFormat(messagePattern, arrayOf(arg))
+    fun format(messagePattern: String, vararg args: Any): String {
+        return arrayFormat(messagePattern, args)
     }
 
-    fun format(messagePattern: String,
-               arg1: Any, arg2: Any): String? {
-        return arrayFormat(messagePattern, arrayOf(arg1, arg2))
-    }
+//    fun format(messagePattern: String, arg: Any): String {
+//        return arrayFormat(messagePattern, arrayOf(arg))
+//    }
+//
+//    fun format(messagePattern: String, arg1: Any, arg2: Any): String {
+//        return arrayFormat(messagePattern, arrayOf(arg1, arg2))
+//    }
 
     internal fun getThrowableCandidate(argArray: Array<Any>?): Throwable? {
         if (argArray == null || argArray.size == 0) {
@@ -42,14 +45,12 @@ object StringFormatter {
      * anchors
      * @return The formatted message
      */
-    fun arrayFormat(messagePattern: String?,
-                    argArray: Array<Any>?): String? {
+    fun arrayFormat(
+        messagePattern: String,
+        argArray: Array<out Any>
+    ): String {
 
 //        val throwableCandidate = getThrowableCandidate(argArray)
-
-        if (messagePattern == null) {
-            return null
-        }
 
         if (argArray == null) {
             return messagePattern
