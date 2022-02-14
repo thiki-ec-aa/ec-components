@@ -14,6 +14,7 @@
     <modules>
         <module>modules/exception</module>
         <module>modules/log</module>
+        <module>modules/ex-log-advisor-starter</module>
         <module>modules/common-utils</module>
         <module>modules/enumeration</module>
         <module>samples/sample-web-app</module>
