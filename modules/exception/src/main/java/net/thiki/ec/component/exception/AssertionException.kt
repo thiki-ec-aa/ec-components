@@ -15,7 +15,8 @@ open class AssertionException(
     /** parameters for system level if needed, e.g. http-status-code */
     val systemParams: MutableMap<String, String> = mutableMapOf(),
     /** parameters for biz level if needed */
-    val bizParams: MutableMap<String, String> = mutableMapOf()
+    val bizParams: MutableMap<String, String> = mutableMapOf(),
+    private val useMap: Boolean = false
 ) : RuntimeException(cause) {
 
     constructor(message: String): this(CodeUnknown, message)
@@ -30,7 +31,8 @@ open class AssertionException(
     override var message: String = message
         get() {
             val fill1 = StringFormatter.format(field, systemParams)
-            val fill2 = StringFormatter.format(field, bizParams)
+            // only fill bizParams into the message.
+            val fill2 = StringFormatter.format(field, if (useMap) bizParams else bizParams.values)
             if (showStackTrace){
                 return fill2 + "\n" + getThrowsLine()
             }else{
