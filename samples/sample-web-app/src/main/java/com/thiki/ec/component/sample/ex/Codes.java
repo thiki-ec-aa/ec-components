@@ -1,12 +1,10 @@
-package com.thiki.ec.component.sample;
+package com.thiki.ec.component.sample.ex;
 
 import lombok.val;
 import net.thiki.ec.component.exception.AssertionException;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public enum Codes {

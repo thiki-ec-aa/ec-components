@@ -1,5 +1,6 @@
-package com.thiki.ec.component.sample;
+package com.thiki.ec.component.sample.ex;
 
+import com.thiki.ec.component.sample.FailureResponseBody;
 import net.thiki.ec.component.exception.AssertionException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

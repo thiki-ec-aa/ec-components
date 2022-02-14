@@ -1,8 +1,8 @@
 package com.thiki.ec.component.sample;
 
+import com.thiki.ec.component.sample.ex.Codes;
 import kotlin.Pair;
 import lombok.val;
-import net.thiki.ec.component.exception.AssertionException;
 import net.thiki.ec.component.exception.AssertionExceptionKt;
 import org.springframework.stereotype.Service;
 
