@@ -56,6 +56,7 @@ open class AssertionException(
 
 }
 
+@SafeVarargs
 fun badRequestError(code: Int, msg: String, vararg params: Pair<String, String>): Nothing {
     throw AssertionException(msg, null, code, false).also {
         it.systemParams[SystemParams_Key_HttpStatus] = "400"
@@ -64,6 +65,7 @@ fun badRequestError(code: Int, msg: String, vararg params: Pair<String, String>)
 }
 
 
+@SafeVarargs
 fun notFoundError(code: Int, msg: String, vararg params: Pair<String, String>): Nothing {
     throw AssertionException(msg, null, code, false).also {
         it.systemParams[SystemParams_Key_HttpStatus] = "404"

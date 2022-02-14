@@ -1,5 +1,6 @@
 package com.thiki.ec.component.sample;
 
+import kotlin.Pair;
 import lombok.val;
 import net.thiki.ec.component.exception.AssertionException;
 import net.thiki.ec.component.exception.AssertionExceptionKt;
@@ -16,7 +17,11 @@ public class OrderService {
     public Order getOrder(long orderId) {
         val order = orderRepo.get(orderId);
         if (order == null){
-            AssertionExceptionKt.badRequestError(Codes.OrderNotFound.code, "order with id[] not found.");
+            AssertionExceptionKt.badRequestError(
+                    Codes.OrderNotFound.code,
+                    "order with id{} not found.",
+                    new Pair<>("orderId", String.valueOf(orderId))
+            );
 //            throw new AssertionException(10001, String.format("The order with id[%s] is not found.", orderId));
         }
         return order;
