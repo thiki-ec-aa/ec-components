@@ -14,6 +14,10 @@
     <artifactId>ex-log-advisor-starter</artifactId>
     <version>0.1.1-SNAPSHOT</version>
 
+    <description>
+        <!-- https://www.baeldung.com/spring-boot-custom-starter -->
+    </description>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-boot.version>2.5.2</spring-boot.version>
