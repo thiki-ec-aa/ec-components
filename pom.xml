@@ -14,9 +14,10 @@
     <modules>
         <module>modules/exception</module>
         <module>modules/log</module>
-        <module>modules/ex-log-advisor-starter</module>
+        <module>modules/ex-log-advisor-spring-boot-starter</module>
         <module>modules/common-utils</module>
         <module>modules/enumeration</module>
+        <module>modules/ex-log-advisor-spring-boot-autoconfigure</module>
         <module>samples/sample-web-app</module>
     </modules>
 
@@ -27,6 +28,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <kotlin.version>1.5.30-M1</kotlin.version>
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
+
+        <spring-boot.version>2.5.2</spring-boot.version>
     </properties>
 
     <dependencies>
