@@ -1,4 +1,4 @@
-package com.thiki.ec.component.sample.ex;
+package net.thiki.ec.component.log.autoconfigure;
 
 import com.thiki.ec.component.sample.FailureResponseBody;
 import net.thiki.ec.component.exception.AssertionException;
@@ -16,6 +16,10 @@ public class AssertionExceptionHandler {
 
     public AssertionExceptionHandler(Greeter greeter) {
         greeter.greet();
+    }
+
+    public AssertionExceptionHandler() {
+
     }
 
     /**

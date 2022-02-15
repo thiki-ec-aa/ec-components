@@ -1,9 +1,12 @@
-package com.thiki.ec.component.sample.config;
+package net.thiki.ec.component.log.autoconfigure;
 
-import com.thiki.ec.component.sample.ex.AssertionExceptionHandler;
+import net.thiki.ec.component.log.autoconfigure.AssertionExceptionHandler;
 import net.thiki.ec.component.log.starter.Greeter;
+import net.thiki.ec.component.log.starter.GreetingConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,12 +15,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 @ConditionalOnMissingBean(annotation = ControllerAdvice.class)
 public class ExceptionConfig {
 
-    @Autowired
-    private Greeter greeter;
-
     @Bean
     AssertionExceptionHandler assertionExceptionHandler(){
-        greeter.greet();
-        return new AssertionExceptionHandler(greeter);
+        return new AssertionExceptionHandler();
     }
 }
