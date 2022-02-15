@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  net.thiki.ec.component.log.autoconfigure.ExceptionConfig 
+  net.thiki.ec.component.log.autoconfigure.ExceptionAdvisorConfig 
