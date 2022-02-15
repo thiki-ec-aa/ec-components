@@ -17,6 +17,6 @@ internal class AssertionExceptionTest{
                 Pair("k1", "p1Value")
             )
         }
-        assertEquals("ex thrown with parameters. p1={k1=p1Value}.", th2.message)
+        assertEquals("ex thrown with parameters. p1={p1Value}.", th2.message)
     }
 }
