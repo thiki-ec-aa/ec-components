@@ -26,7 +26,7 @@ public class AssertionExceptionTest4Java {
 //            throw new AssertionException("ex thrown.");
             AssertionExceptionKt.badRequestError(1000, "ex thrown with parameters. p1={}.", new Pair<>("k1", "p1Value"));
         });
-        assertEquals("ex thrown with parameters. p1={k1=p1Value}.", th2.getMessage());
+        assertEquals("ex thrown with parameters. p1={p1Value}.", th2.getMessage());
 
     }
 
