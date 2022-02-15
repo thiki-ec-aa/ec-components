@@ -2,7 +2,6 @@ package net.thiki.ec.component.log.autoconfigure;
 
 import com.thiki.ec.component.sample.FailureResponseBody;
 import net.thiki.ec.component.exception.AssertionException;
-import net.thiki.ec.component.log.starter.Greeter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -13,14 +12,6 @@ import java.util.Map;
 
 @ControllerAdvice
 public class AssertionExceptionHandler {
-
-    public AssertionExceptionHandler(Greeter greeter) {
-        greeter.greet();
-    }
-
-    public AssertionExceptionHandler() {
-
-    }
 
     /**
      *
