@@ -26,4 +26,4 @@ hs_err_pid*
 *.iml
 .idea/**
 /samples/sample-web-app/target/
-/modules/ex-log-advisor-starter/target/
+/modules/ex-log-advisor-spring-boot-starter/target/

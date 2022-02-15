@@ -11,7 +11,7 @@
         <relativePath>../..</relativePath>
     </parent>
 
-    <artifactId>ex-log-advisor-starter</artifactId>
+    <artifactId>ex-log-advisor-spring-boot-starter</artifactId>
     <version>0.1.1-SNAPSHOT</version>
 
     <description>
@@ -33,6 +33,11 @@
 <!--            <artifactId>spring-boot-autoconfigure</artifactId>-->
 <!--            <version>${spring-boot.version}</version>-->
 <!--        </dependency>-->
+        <dependency>
+            <groupId>net.thiki.ec.component</groupId>
+            <artifactId>ex-log-advisor-spring-boot-autoconfigure</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
