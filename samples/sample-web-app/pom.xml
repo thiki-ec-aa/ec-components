@@ -59,6 +59,11 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>net.thiki.ec.component</groupId>
+            <artifactId>ex-log-advisor-starter</artifactId>
+            <version>0.1.1-SNAPSHOT</version>
+        </dependency>
 
         <dependency>
             <groupId>net.thiki.ec.component</groupId>
