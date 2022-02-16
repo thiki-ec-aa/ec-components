@@ -1,6 +1,7 @@
 package net.thiki.ec.component.log.autoconfigure;
 
 import net.thiki.ec.component.exception.AssertionException;
+import net.thiki.ec.component.exception.FailureResponseBody;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

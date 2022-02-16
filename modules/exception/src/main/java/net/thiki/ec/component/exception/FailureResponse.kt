@@ -1,4 +1,4 @@
-package net.thiki.ec.component.log.autoconfigure
+package net.thiki.ec.component.exception
 
 /**
  * The Response Body for exceptions or failures.
