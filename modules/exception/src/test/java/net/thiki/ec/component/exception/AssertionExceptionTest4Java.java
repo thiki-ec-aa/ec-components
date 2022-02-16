@@ -2,6 +2,7 @@ package net.thiki.ec.component.exception;
 
 import kotlin.Pair;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
@@ -11,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AssertionExceptionTest4Java {
 
     @Test
+    @Disabled
     void testAssertionException() {
         AssertionException th = assertThrows(AssertionException.class, () -> {
 //            throw new AssertionException("ex thrown.");
@@ -21,6 +23,7 @@ public class AssertionExceptionTest4Java {
     }
 
     @Test
+    @Disabled
     void testAssertionExceptionWithParameters(){
         AssertionException th2 = assertThrows(AssertionException.class, () -> {
 //            throw new AssertionException("ex thrown.");
