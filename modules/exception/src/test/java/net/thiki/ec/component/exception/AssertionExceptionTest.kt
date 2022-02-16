@@ -2,10 +2,16 @@ package net.thiki.ec.component.exception
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestInstance
 
-internal class AssertionExceptionTest{
+@Disabled("todo")
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+class AssertionExceptionTest{
+
     @Test
+    @Disabled("todo")
     fun testAssertionExceptionWithParameters() {
         val th2 = assertThrows(
             AssertionException::class.java
