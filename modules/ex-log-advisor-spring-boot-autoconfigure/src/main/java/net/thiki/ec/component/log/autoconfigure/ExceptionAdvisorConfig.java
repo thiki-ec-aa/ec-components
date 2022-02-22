@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
 @Configuration
-@ConditionalOnMissingBean(annotation = ControllerAdvice.class)
+@ConditionalOnMissingBean(AssertionExceptionHandler.class)
 public class ExceptionAdvisorConfig {
 
     @Bean
