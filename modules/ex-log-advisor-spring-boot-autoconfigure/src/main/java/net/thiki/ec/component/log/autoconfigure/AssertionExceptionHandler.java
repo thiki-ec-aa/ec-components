@@ -8,35 +8,40 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Map;
-
 @ControllerAdvice
 public class AssertionExceptionHandler {
 
     /**
      *
-     * @param ae
+     * @param re
      * @return
      */
-    @ExceptionHandler(AssertionException.class)
+    @ExceptionHandler(RuntimeException.class)
     @ResponseBody
-    public ResponseEntity<FailureResponseBody<Map<String, String>>> handlerAE(AssertionException ae) {
+    public ResponseEntity<FailureResponseBody<?>> handlerRE(RuntimeException re) {
         //default:
         int httpStatus = HttpStatus.INTERNAL_SERVER_ERROR.value();
-        final String httpStatusAsStr = ae.getSystemParams().get(AssertionException.SystemParams_Key_HttpStatus);
-        if (httpStatusAsStr != null){
-            try{
-                httpStatus = Integer.parseInt(httpStatusAsStr);
-            }catch (NumberFormatException ignored){
+        if (re instanceof AssertionException) {
+            AssertionException ae = (AssertionException) re;
+            final String httpStatusAsStr = ae.getSystemParams().get(AssertionException.SystemParams_Key_HttpStatus);
+            if (httpStatusAsStr != null) {
+                try {
+                    httpStatus = Integer.parseInt(httpStatusAsStr);
+                } catch (NumberFormatException ignored) {
+                    //ignored
+                }
+            } else {
                 //ignored
             }
-        }else{
-            //ignored
+            return ResponseEntity.status(httpStatus)
+                    .body(new FailureResponseBody<>(String.valueOf(ae.getCode()), ae.getMessage(), ae.getBizParams()))
+                    ;
+        } else {
+            // other runtime exceptions
+            return ResponseEntity.status(httpStatus)
+                    .body(new FailureResponseBody<>(String.valueOf(AssertionException.CodeUnknown), re.getMessage(), re))
+                    ;
         }
-
-        return ResponseEntity.status(httpStatus)
-                .body(new FailureResponseBody<>(String.valueOf(ae.getCode()), ae.getMessage(), ae.getBizParams()))
-                ;
-
     }
+
 }
