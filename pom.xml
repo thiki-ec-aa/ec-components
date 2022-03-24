@@ -18,6 +18,7 @@
         <module>modules/common-utils</module>
         <module>modules/enumeration</module>
         <module>modules/ex-log-advisor-spring-boot-autoconfigure</module>
+        <module>modules/code-generators</module>
         <module>samples/sample-web-app</module>
     </modules>
 
