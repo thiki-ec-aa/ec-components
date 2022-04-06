@@ -21,18 +21,31 @@ open class AssertionException(
 
     constructor(message: String): this(CodeUnknown, message)
 
+    /**
+     * default http-status is 500
+     *
+     * use httpStatus(status) to specify http-status if not 500
+     */
     constructor(
         /** internal code */
-        code: Int = 0,
+        code: Int,
         /** message of ex */
-        message: String
-    ) : this(message, null, code)
+        message: String,
+        /** parameters for biz level if needed */
+        bizParams: MutableMap<String, String> = mutableMapOf()
+    ): this(message, null, code, false, mutableMapOf(), bizParams, false){
+        systemParams[SystemParams_Key_HttpStatus] = "500"
+    }
 
     override var message: String = message
         get() {
-            val fill1 = StringFormatter.format(field, systemParams)
+//            val fill1 = StringFormatter.format(field, systemParams)
             // only fill bizParams into the message.
-            val fill2 = StringFormatter.format(field, if (useMap) bizParams else bizParams.values)
+            val fill2 = if (useMap){
+                StringFormatter.format(field,  bizParams)
+            }else{
+                StringFormatter.arrayFormat(field,  bizParams.values.toTypedArray())
+            }
             if (showStackTrace){
                 return fill2 + "\n" + getThrowsLine()
             }else{
@@ -41,6 +54,9 @@ open class AssertionException(
 
         }
 
+    /**
+     * Specify the http status.
+     */
     fun httpStatus(status: Int): AssertionException {
         systemParams[SystemParams_Key_HttpStatus] = status.toString()
         return this
@@ -58,6 +74,9 @@ open class AssertionException(
 
 }
 
+/**
+ * bad request error: http-status = 400
+ */
 @SafeVarargs
 fun badRequestError(code: Int, msg: String, vararg params: Pair<String, String>): Nothing {
     throw AssertionException(msg, null, code, false).also {
@@ -67,6 +86,9 @@ fun badRequestError(code: Int, msg: String, vararg params: Pair<String, String>)
 }
 
 
+/**
+ * not found error: http-status = 404
+ */
 @SafeVarargs
 fun notFoundError(code: Int, msg: String, vararg params: Pair<String, String>): Nothing {
     throw AssertionException(msg, null, code, false).also {
@@ -75,17 +97,24 @@ fun notFoundError(code: Int, msg: String, vararg params: Pair<String, String>): 
     }
 }
 
+/**
+ * unexpected error: http-status = 500
+ */
 fun unexpectedError(msg: String): Nothing = throw AssertionException(msg)
+
+fun unexpectedError(code: Int, msg: String, bizParams: MutableMap<String, String> = mutableMapOf()): Nothing = throw AssertionException(code, msg, bizParams)
+
+
 
 fun unexpectedError(msg: String, block: (AssertionException) -> Unit): Nothing = throw AssertionException(msg).apply {
     block(this)
 }
 
-fun unexpectedError(httpStatusCode: Int, msg: String): Nothing = unexpectedError(msg) {
+fun unexpectedErrorWithHttpStatus(httpStatusCode: Int, msg: String): Nothing = unexpectedError(msg) {
     it.systemParams[SystemParams_Key_HttpStatus] = httpStatusCode.toString()
 }
 
-fun unexpectedError(httpStatusCode: Int, code: Int, msg: String): Nothing =
+fun unexpectedErrorWithHttpStatus(httpStatusCode: Int, code: Int, msg: String): Nothing =
     throw AssertionException(msg, null, code, false).also {
         it.systemParams[SystemParams_Key_HttpStatus] = httpStatusCode.toString()
     }
