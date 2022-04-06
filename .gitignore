@@ -28,3 +28,4 @@ hs_err_pid*
 /samples/sample-web-app/target/
 /modules/ex-log-advisor-spring-boot-starter/target/
 /modules/ex-log-advisor-spring-boot-autoconfigure/target/
+/modules/code-generators/target/
