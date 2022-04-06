@@ -1,6 +1,7 @@
 package net.thiki.ec.component.code.generator
 
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 
@@ -74,6 +75,7 @@ internal class EntityWrapperProxyGeneratorTest{
 """.trimIndent()
 
     @Test
+    @Disabled("not implemented")
     fun testEntityProxyGenerator(){
         println(javaCode);
         val cut = EntityWrapperProxyGenerator();
