@@ -28,4 +28,21 @@ internal class StringFormatterTest{
         ))
     }
 
+    /**
+     *
+     */
+    @Test
+    fun testSingleValueArray(){
+        val m =  mutableMapOf<String, String>()
+        m.putAll(arrayOf(Pair("k1", "p1Value")));
+        assertEquals("p1=[p1Value].",StringFormatter.format("p1={}.", m.values))
+        assertNotEquals("p1=p1Value.",StringFormatter.format("p1={}.", m.values))
+
+        assertEquals("p1=p1Value.",StringFormatter.arrayFormat("p1={}.", m.values.toTypedArray()))
+
+        assertEquals("p1=p1Value.",StringFormatter.format("p1={}.", "p1Value"))
+
+    }
+
+
 }

@@ -25,4 +25,18 @@ class AssertionExceptionTest{
         }
         assertEquals("ex thrown with parameters. p1={p1Value}.", th2.message)
     }
+
+    @Test
+    fun testConstructors() {
+        val ae1 = AssertionException(100, "djfsdjk", mutableMapOf(
+            "ajdfkjs" to "fjadksfj"
+        ))
+        assertEquals("500", ae1.systemParams[AssertionException.SystemParams_Key_HttpStatus])
+
+
+        val ae2 = AssertionException(100, "djfsdjk")
+        assertEquals("500", ae2.systemParams[AssertionException.SystemParams_Key_HttpStatus])
+        assertEquals(0, ae2.bizParams.size)
+
+    }
 }
