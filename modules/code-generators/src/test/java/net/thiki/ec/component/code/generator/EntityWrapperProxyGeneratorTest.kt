@@ -4,20 +4,11 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
+import kotlin.reflect.jvm.javaField
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 internal class EntityWrapperProxyGeneratorTest{
 
-
-    data class Person(
-        val firstName: String,
-        val lastName: String,
-        val age: Int
-    ){
-        fun getName(): String{
-            return "$firstName $lastName"
-        }
-    }
 
     /**
      * SampleCode in kt:
@@ -83,7 +74,30 @@ internal class EntityWrapperProxyGeneratorTest{
             javaCode.replace("\r\n", "\n"),
             generatedJavaCode.replace("\r\n", "\n")
         )
+    }
 
+    class Person1{
+        val aaaaaaa: String = ""
+
+
+    }
+    @Test
+    fun testString(){
+        assertEquals('j', "jdfj"[0])
+        assertEquals("j", "jdfj"[0].toString())
+
+    }
+
+    @Test
+    fun testToDataModel(){
+        val cut = EntityClassMeta(Person::class.java)
+        val members = Person::class.members
+        val jot  = Person::class.javaObjectType
+        val fs = jot.fields
+        val ms = jot.methods
+        val cs = jot.constructors
+//        println(cut.toDataModel());
+        Person1::aaaaaaa.javaField
     }
 
     @Test
