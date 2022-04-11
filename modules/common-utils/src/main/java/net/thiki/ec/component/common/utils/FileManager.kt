@@ -207,7 +207,7 @@ open class FileManager(root: String) {
     }
 
     fun deleteFile(path: String, fileName: String) {
-        val parentPath = fileStorageLocation.resolve(path).normalize()
+//        val parentPath = fileStorageLocation.resolve(path).normalize()
         val filePath = fileStorageLocation.resolve("$path/$fileName").normalize()
         try {
             if (filePath.toFile().exists()) {
