@@ -2,13 +2,13 @@ package net.thiki.ec.component.exception
 
 import net.thiki.ec.component.exception.AssertionException.Companion.SystemParams_Key_HttpStatus
 
-open class AssertionException(
+open class AssertionException @JvmOverloads constructor(
     /** message of ex */
     message: String,
     /** cause */
     cause: Throwable? = null,
     /** internal code */
-    val code: Int = 0,
+    val code: Int = CodeUnknown,
     @Suppress("MemberVisibilityCanBePrivate")
     val showStackTrace: Boolean = false,
 
@@ -19,13 +19,12 @@ open class AssertionException(
     private val useMap: Boolean = false
 ) : RuntimeException(cause) {
 
-    constructor(message: String): this(CodeUnknown, message)
-
     /**
      * default http-status is 500
      *
      * use httpStatus(status) to specify http-status if not 500
      */
+    @JvmOverloads
     constructor(
         /** internal code */
         code: Int,
@@ -102,6 +101,7 @@ fun notFoundError(code: Int, msg: String, vararg params: Pair<String, String>): 
  */
 fun unexpectedError(msg: String): Nothing = throw AssertionException(msg)
 
+@JvmOverloads
 fun unexpectedError(code: Int, msg: String, bizParams: MutableMap<String, String> = mutableMapOf()): Nothing = throw AssertionException(code, msg, bizParams)
 
 
@@ -119,6 +119,7 @@ fun unexpectedErrorWithHttpStatus(httpStatusCode: Int, code: Int, msg: String): 
         it.systemParams[SystemParams_Key_HttpStatus] = httpStatusCode.toString()
     }
 
+@JvmOverloads
 fun assertThat(shouldBeTrue: Boolean, failMsg: String = "The assertion failed.") {
     if (!shouldBeTrue) {
         unexpectedError(failMsg)
