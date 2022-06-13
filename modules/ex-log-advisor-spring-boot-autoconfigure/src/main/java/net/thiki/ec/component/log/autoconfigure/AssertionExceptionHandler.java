@@ -2,6 +2,7 @@ package net.thiki.ec.component.log.autoconfigure;
 
 import net.thiki.ec.component.exception.AssertionException;
 import net.thiki.ec.component.exception.FailureResponseBody;
+import org.apache.logging.log4j.spi.StandardLevel;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,10 +12,20 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Arrays;
-
 @ControllerAdvice
 public class AssertionExceptionHandler {
+
+    private StandardLevel aeLevel;
+    private StandardLevel otherLevel;
+
+    public AssertionExceptionHandler() {
+        this(StandardLevel.DEBUG, StandardLevel.ERROR);
+    }
+
+    public AssertionExceptionHandler(StandardLevel aeLevel, StandardLevel otherLevel) {
+        this.aeLevel = aeLevel;
+        this.otherLevel = otherLevel;
+    }
 
     private static final Logger logger = LoggerFactory.getLogger(AssertionExceptionHandler.class);
     /**
@@ -39,8 +50,9 @@ public class AssertionExceptionHandler {
             } else {
                 //ignored
             }
-            if (logger.isDebugEnabled()){
-                logger.debug(ex2String(re));
+            logger.isDebugEnabled();
+            if (logger.isErrorEnabled()){
+                logger.error(ex2String(re));
             }
             return ResponseEntity.status(httpStatus)
                     .body(new FailureResponseBody<>(String.valueOf(ae.getCode()), ae.getMessage(), ae.getBizParams()))
