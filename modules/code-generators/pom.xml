@@ -7,13 +7,13 @@
     <parent>
         <groupId>net.thiki.ec.component</groupId>
         <artifactId>parent</artifactId>
-        <version>0.1.1-SNAPSHOT</version>
+        <version>1.0.0</version>
         <relativePath>../..</relativePath>
     </parent>
 
     <groupId>net.thiki.ec</groupId>
     <artifactId>code-generators</artifactId>
-    <version>0.1.1-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <properties>
         <lombok.version>1.18.20</lombok.version>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>net.thiki.ec.component</groupId>
             <artifactId>exception</artifactId>
-            <version>0.2.1-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
