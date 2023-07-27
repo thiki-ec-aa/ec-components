@@ -18,6 +18,7 @@
         <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
         <spring-boot.version>2.3.3.RELEASE</spring-boot.version>
         <lombok.version>1.18.20</lombok.version>
+        <jackson.version>2.14.2</jackson.version>
 
         <main.class>net.thiki.ec.component.sample.SampleWebApp</main.class>
     </properties>
@@ -90,7 +91,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.11.2</version>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
