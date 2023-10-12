@@ -30,7 +30,7 @@
         <kotlin.version>1.5.30-M1</kotlin.version>
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
 
-        <spring-boot.version>2.5.2</spring-boot.version>
+        <spring-boot.version>2.7.12</spring-boot.version>
     </properties>
 
     <dependencies>

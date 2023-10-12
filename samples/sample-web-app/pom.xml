@@ -8,15 +8,15 @@
         <groupId>net.thiki.ec.component</groupId>
         <artifactId>parent</artifactId>
         <version>1.0.0</version>
-        <relativePath>../..</relativePath>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <artifactId>sample-web-app</artifactId>
     <version>1.0.0</version>
 
     <properties>
-        <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
-        <spring-boot.version>2.3.3.RELEASE</spring-boot.version>
+        <spring-cloud.version>2021.0.6</spring-cloud.version>
+        <spring-boot.version>2.7.12</spring-boot.version>
         <lombok.version>1.18.20</lombok.version>
 
         <main.class>net.thiki.ec.component.sample.SampleWebApp</main.class>
