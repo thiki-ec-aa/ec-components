@@ -20,6 +20,7 @@
         <lombok.version>1.18.20</lombok.version>
 
         <main.class>net.thiki.ec.component.sample.SampleWebApp</main.class>
+        <jackson.version>2.14.2</jackson.version>
     </properties>
 
     <dependencyManagement>
@@ -90,7 +91,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.11.2</version>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
