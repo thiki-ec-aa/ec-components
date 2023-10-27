@@ -17,22 +17,15 @@
     <description>
         <!-- https://www.baeldung.com/spring-boot-custom-starter -->
     </description>
+    <properties>
+        <ex-log-advisor-spring-boot-autoconfigure.version>1.0.0</ex-log-advisor-spring-boot-autoconfigure.version>
+    </properties>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot</artifactId>-->
-<!--            <version>2.5.2</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-autoconfigure</artifactId>-->
-<!--            <version>${spring-boot.version}</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>net.thiki.ec.component</groupId>
             <artifactId>ex-log-advisor-spring-boot-autoconfigure</artifactId>
-            <version>1.0.0</version>
+            <version>${ex-log-advisor-spring-boot-autoconfigure.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
