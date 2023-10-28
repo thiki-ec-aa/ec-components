@@ -20,7 +20,7 @@
         <lombok.version>1.18.20</lombok.version>
 
         <main.class>net.thiki.ec.component.sample.SampleWebApp</main.class>
-        <jackson.version>2.14.2</jackson.version>
+        <jackson.version>2.15.3</jackson.version>
         <ex-log-advisor-spring-boot-starter.version>1.0.0</ex-log-advisor-spring-boot-starter.version>
         <exception.version>1.0.0</exception.version>
     </properties>
