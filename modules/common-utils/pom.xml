@@ -15,7 +15,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
     <properties>
-        <jackson-module-kotlin.version>2.9.10</jackson-module-kotlin.version>
+        <jackson-module-kotlin.version>2.15.3</jackson-module-kotlin.version>
         <exception.version>1.0.0</exception.version>
         <log.version>1.0.0</log.version>
         <enumeration.version>1.0.0</enumeration.version>
