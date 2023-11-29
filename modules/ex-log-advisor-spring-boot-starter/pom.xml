@@ -16,7 +16,7 @@
         <!-- https://www.baeldung.com/spring-boot-custom-starter -->
     </description>
     <properties>
-        <ex-log-advisor-spring-boot-autoconfigure.version>1.0.0</ex-log-advisor-spring-boot-autoconfigure.version>
+        <ex-log-advisor-spring-boot-autoconfigure.version>1.1.0</ex-log-advisor-spring-boot-autoconfigure.version>
         <spring-boot.version>2.7.12</spring-boot.version>
     </properties>
 
