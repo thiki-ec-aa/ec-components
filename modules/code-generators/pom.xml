@@ -6,24 +6,25 @@
 
     <parent>
         <groupId>net.thiki.ec.component</groupId>
-        <artifactId>parent</artifactId>
-        <version>1.0.1-SNAPSHOT</version>
-        <relativePath>../..</relativePath>
+        <artifactId>ec-parent</artifactId>
+        <version>1.1.0</version>
+        <relativePath>../ec-parent/pom.xml</relativePath>
     </parent>
 
     <groupId>net.thiki.ec</groupId>
     <artifactId>code-generators</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
 
     <properties>
         <lombok.version>1.18.20</lombok.version>
+        <exception.version>1.0.0</exception.version>
+        <freemarker.version>2.3.31</freemarker.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>net.thiki.ec.component</groupId>
             <artifactId>exception</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
+            <version>${exception.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -34,8 +35,14 @@
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
-            <version>2.3.31</version>
+            <version>${freemarker.version}</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.fasterxml.jackson.module</groupId>-->
+<!--            <artifactId>jackson-module-kotlin</artifactId>-->
+<!--            <version >2.9.10</version>-->
+<!--        </dependency>-->
+
         <!-- for command line: https://picocli.info/ -->
     </dependencies>
 

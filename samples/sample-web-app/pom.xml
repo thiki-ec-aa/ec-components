@@ -6,21 +6,30 @@
 
     <parent>
         <groupId>net.thiki.ec.component</groupId>
-        <artifactId>parent</artifactId>
-        <version>1.0.1-SNAPSHOT</version>
-        <relativePath>../..</relativePath>
+        <artifactId>ec-parent</artifactId>
+        <version>1.1.0</version>
+        <relativePath>../../modules/ec-parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>sample-web-app</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
 
     <properties>
-        <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
-        <spring-boot.version>2.3.3.RELEASE</spring-boot.version>
-        <lombok.version>1.18.20</lombok.version>
-        <jackson.version>2.14.2</jackson.version>
+        <maven.deploy.skip>true</maven.deploy.skip>
+        <maven.install.skip>true</maven.install.skip>
 
         <main.class>net.thiki.ec.component.sample.SampleWebApp</main.class>
+
+        <spring-cloud.version>2021.0.6</spring-cloud.version>
+        <spring-boot.version>2.7.12</spring-boot.version>
+        <lombok.version>1.18.20</lombok.version>
+
+        <jackson.version>2.15.3</jackson.version>
+        <ex-log-advisor-spring-boot-starter.version>1.0.0</ex-log-advisor-spring-boot-starter.version>
+        <exception.version>1.0.0</exception.version>
+
+        <!-- override the version of transitive deps -->
+        <tomcat-embed-core.version>9.0.81</tomcat-embed-core.version>
+        <snakeyaml.version>2.2</snakeyaml.version>
     </properties>
 
     <dependencyManagement>
@@ -64,13 +73,13 @@
         <dependency>
             <groupId>net.thiki.ec.component</groupId>
             <artifactId>ex-log-advisor-spring-boot-starter</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
+            <version>${ex-log-advisor-spring-boot-starter.version}</version>
         </dependency>
 
         <dependency>
             <groupId>net.thiki.ec.component</groupId>
             <artifactId>exception</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
+            <version>${exception.version}</version>
             <scope>compile</scope>
         </dependency>
 
@@ -93,9 +102,58 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>${tomcat-embed-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-el</artifactId>
+            <version>${tomcat-embed-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-websocket</artifactId>
+            <version>${tomcat-embed-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-annotations-api</artifactId>
+            <version>${tomcat-embed-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>${snakeyaml.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-boot.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.tomcat.embed</groupId>
+                    <artifactId>tomcat-embed-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.tomcat.embed</groupId>
+                    <artifactId>tomcat-embed-el</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.tomcat.embed</groupId>
+                    <artifactId>tomcat-embed-websocket</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>snakeyaml</artifactId>
+                    <groupId>org.yaml</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -128,7 +186,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
                 <goals>
                     <goal>compile</goal>
                 </goals>

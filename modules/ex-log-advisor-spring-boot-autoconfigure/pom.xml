@@ -6,13 +6,21 @@
 
     <parent>
         <groupId>net.thiki.ec.component</groupId>
-        <artifactId>parent</artifactId>
-        <version>1.0.1-SNAPSHOT</version>
-        <relativePath>../..</relativePath>
+        <artifactId>ec-parent</artifactId>
+        <version>1.1.0</version>
+        <relativePath>../ec-parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>ex-log-advisor-spring-boot-autoconfigure</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <properties>
+        <exception.version>1.0.0</exception.version>
+
+        <log4j2.version>2.17.1</log4j2.version>
+
+        <!-- override the version of transitive deps -->
+        <tomcat-embed-core.version>9.0.81</tomcat-embed-core.version>
+        <snakeyaml.version>2.2</snakeyaml.version>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -25,16 +33,80 @@
             <artifactId>spring-boot-autoconfigure</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>${tomcat-embed-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-el</artifactId>
+            <version>${tomcat-embed-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-websocket</artifactId>
+            <version>${tomcat-embed-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-annotations-api</artifactId>
+            <version>${tomcat-embed-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>${snakeyaml.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring-boot.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.tomcat.embed</groupId>
+                    <artifactId>tomcat-embed-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.tomcat.embed</groupId>
+                    <artifactId>tomcat-embed-el</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.tomcat.embed</groupId>
+                    <artifactId>tomcat-embed-websocket</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>snakeyaml</artifactId>
+                    <groupId>org.yaml</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- log4j2 supports-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j2.version}</version>
         </dependency>
 
         <dependency>
             <groupId>net.thiki.ec.component</groupId>
             <artifactId>exception</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
+            <version>${exception.version}</version>
             <scope>compile</scope>
         </dependency>
 
