@@ -25,7 +25,7 @@
 
         <jackson.version>2.15.3</jackson.version>
         <ex-log-advisor-spring-boot-starter.version>1.0.0</ex-log-advisor-spring-boot-starter.version>
-        <exception.version>1.0.0</exception.version>
+        <ec-exception.version>1.1.0</ec-exception.version>
 
         <!-- override the version of transitive deps -->
         <tomcat-embed-core.version>9.0.81</tomcat-embed-core.version>
@@ -78,8 +78,8 @@
 
         <dependency>
             <groupId>net.thiki.ec.component</groupId>
-            <artifactId>exception</artifactId>
-            <version>${exception.version}</version>
+            <artifactId>ec-exception</artifactId>
+            <version>${ec-exception.version}</version>
             <scope>compile</scope>
         </dependency>
 

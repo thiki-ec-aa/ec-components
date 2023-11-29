@@ -10,7 +10,7 @@
         <relativePath>../ec-parent/pom.xml</relativePath>
     </parent>
 
-    <artifactId>exception</artifactId>
+    <artifactId>ec-exception</artifactId>
     <packaging>jar</packaging>
 
 </project>

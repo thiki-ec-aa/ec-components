@@ -13,7 +13,7 @@
 
     <artifactId>ex-log-advisor-spring-boot-autoconfigure</artifactId>
     <properties>
-        <exception.version>1.0.0</exception.version>
+        <ec-exception.version>1.1.0</ec-exception.version>
 
         <log4j2.version>2.17.1</log4j2.version>
 
@@ -105,8 +105,8 @@
 
         <dependency>
             <groupId>net.thiki.ec.component</groupId>
-            <artifactId>exception</artifactId>
-            <version>${exception.version}</version>
+            <artifactId>ec-exception</artifactId>
+            <version>${ec-exception.version}</version>
             <scope>compile</scope>
         </dependency>
 
