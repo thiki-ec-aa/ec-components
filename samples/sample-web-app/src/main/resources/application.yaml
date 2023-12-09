@@ -1,0 +1,4 @@
+server:
+  port: 8081
+#logging:
+#  config: C:\workspaces\xctech-cone-workspaces\all-projects\ec-components\samples\sample-web-app\src\main\resources\config\log4j2.xml
